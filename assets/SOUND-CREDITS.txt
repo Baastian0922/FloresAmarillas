@@ -1,0 +1,8 @@
+Watering sound
+==============
+
+"Rain.ogg" by ジダネ.
+Source: https://commons.wikimedia.org/wiki/File:Rain.ogg
+License: Public domain.
+
+This project uses Wikimedia Commons' official MP3 transcode of the recording.

@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#fff9e8">
+  <meta name="description" content="Una pequeña flor amarilla que crece con cada gesto de cariño.">
+  <title>Una flor amarilla para ti</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Dancing+Script:wght@500;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main id="experience" class="experience stage-0" aria-live="polite">
+    <div id="ambient" class="ambient" aria-hidden="true"></div>
+    <div class="background-glow" aria-hidden="true"></div>
+
+    <section class="intro-copy" aria-labelledby="mainTitle">
+      <p class="eyebrow">Un pequeño detalle</p>
+      <h1 id="mainTitle">Tengo algo para ti... <span aria-hidden="true">🌱</span></h1>
+      <p id="stageMessage" class="stage-message">Hay cosas bonitas que necesitan un poquito de tiempo...</p>
+      <p id="touchHint" class="touch-hint"><span class="touch-icon" aria-hidden="true">♡</span> Toca la pantalla para comenzar</p>
+    </section>
+
+    <section id="garden" class="garden" aria-label="Una pequeña planta esperando ser regada">
+      <div id="plantStage" class="plant-stage">
+        <div class="plant-shadow" aria-hidden="true"></div>
+
+        <div id="plant" class="plant" aria-hidden="true">
+          <div class="stem">
+            <i class="stem-shine"></i>
+          </div>
+
+          <div class="branch branch-left"><i></i></div>
+          <div class="branch branch-right"><i></i></div>
+          <div class="branch branch-lower-left"><i></i></div>
+          <div class="branch branch-lower-right"><i></i></div>
+
+          <div class="leaf leaf-1"><i></i></div>
+          <div class="leaf leaf-2"><i></i></div>
+          <div class="leaf leaf-3"><i></i></div>
+          <div class="leaf leaf-4"><i></i></div>
+
+          <div class="flower-head">
+            <div class="petals">
+              <i class="petal" style="--i: 0"></i>
+              <i class="petal" style="--i: 1"></i>
+              <i class="petal" style="--i: 2"></i>
+              <i class="petal" style="--i: 3"></i>
+              <i class="petal" style="--i: 4"></i>
+              <i class="petal" style="--i: 5"></i>
+              <i class="petal" style="--i: 6"></i>
+              <i class="petal" style="--i: 7"></i>
+              <i class="petal" style="--i: 8"></i>
+              <i class="petal" style="--i: 9"></i>
+              <i class="petal" style="--i: 10"></i>
+              <i class="petal" style="--i: 11"></i>
+              <i class="petal" style="--i: 12"></i>
+              <i class="petal" style="--i: 13"></i>
+              <i class="petal" style="--i: 14"></i>
+              <i class="petal" style="--i: 15"></i>
+            </div>
+            <div class="flower-center"><i></i></div>
+            <div class="bud"><i></i></div>
+          </div>
+
+          <div class="bouquet-wrap">
+            <i class="wrap-left"></i>
+            <i class="wrap-right"></i>
+            <b class="bouquet-ribbon"><i></i></b>
+          </div>
+
+          <div class="soil">
+            <i class="sprout sprout-left"></i>
+            <i class="sprout sprout-right"></i>
+          </div>
+          <div class="pot"><i class="pot-highlight"></i></div>
+        </div>
+
+        <button id="flowerHitArea" class="flower-hit-area" type="button" aria-label="Descubrir un mensaje escondido"></button>
+        <div id="effectsLayer" class="effects-layer" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <section id="finalMessage" class="final-message" aria-label="Mensaje final">
+      <h2>Unas flores amarillas para ti <span aria-hidden="true">💛</span></h2>
+      <p>Por si hoy nadie te regaló unas...</p>
+      <p>No son de florero, pero sí vienen con buena onda.</p>
+      <p>Espero que te saquen una sonrisa. <span aria-hidden="true">🌻</span></p>
+    </section>
+
+    <div class="growth-status" aria-label="Progreso de crecimiento">
+      <p id="progressText">🌱 Cuidando algo bonito...</p>
+      <div class="progress-track"><i id="progressBar"></i></div>
+    </div>
+  </main>
+
+  <div id="secretOverlay" class="secret-overlay" role="dialog" aria-modal="true" aria-labelledby="secretTitle" hidden>
+    <button class="secret-backdrop" type="button" aria-label="Cerrar mensaje"></button>
+    <article class="secret-card">
+      <span class="secret-mark" aria-hidden="true">✦</span>
+      <h2 id="secretTitle">Por si hoy nadie te regaló flores amarillas, aquí tienes unas hechas con un poquito de código. <span aria-hidden="true">💛</span></h2>
+      <p>Son virtuales...</p>
+      <p>pero la sonrisa sí cuenta.</p>
+      <button id="closeSecret" class="close-secret" type="button">Cerrar</button>
+    </article>
+  </div>
+
+  <audio id="wateringSound" src="assets/watering.mp3" preload="auto"></audio>
+  <script src="script.js"></script>
+</body>
+</html>
