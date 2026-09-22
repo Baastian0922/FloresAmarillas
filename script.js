@@ -4,6 +4,7 @@
   const TOTAL_WATERINGS = 11;
   const WATER_DELAY = 760;
   const COOLDOWN = 900;
+  const LIGHTWEIGHT_MODE = window.matchMedia("(max-width: 600px), (pointer: coarse)").matches;
 
   const stages = [
     { word: "", message: "Hay cosas bonitas que necesitan un poquito de tiempo..." },
@@ -33,7 +34,6 @@
   const secretOverlay = document.querySelector("#secretOverlay");
   const closeSecret = document.querySelector("#closeSecret");
   const secretBackdrop = document.querySelector(".secret-backdrop");
-  const wateringSound = document.querySelector("#wateringSound");
 
   ["flower-head-2", "flower-head-3", "flower-head-4", "flower-head-5", "flower-head-6"].forEach((className) => {
     const companion = flowerHead.cloneNode(true);
@@ -48,39 +48,14 @@
   let bloomed = false;
   let firstInteraction = false;
   let lastWateredAt = 0;
-  let waterSoundStopTimer = null;
-  let waterSoundFadeTimer = null;
 
   function random(min, max) {
     return Math.random() * (max - min) + min;
   }
 
-  function playWateringSound() {
-    window.clearTimeout(waterSoundStopTimer);
-    window.clearInterval(waterSoundFadeTimer);
-
-    wateringSound.pause();
-    wateringSound.currentTime = 0;
-    wateringSound.volume = .22;
-    const playback = wateringSound.play();
-    if (playback) playback.catch(() => {});
-
-    waterSoundStopTimer = window.setTimeout(() => {
-      waterSoundFadeTimer = window.setInterval(() => {
-        wateringSound.volume = Math.max(0, wateringSound.volume - .025);
-        if (wateringSound.volume > .01) return;
-
-        window.clearInterval(waterSoundFadeTimer);
-        wateringSound.pause();
-        wateringSound.currentTime = 0;
-        wateringSound.volume = .22;
-      }, 45);
-    }, 1350);
-  }
-
   function createAmbientParticles() {
     const ambient = document.querySelector("#ambient");
-    const amount = window.innerWidth < 600 ? 17 : 25;
+    const amount = LIGHTWEIGHT_MODE ? 8 : 25;
 
     for (let index = 0; index < amount; index += 1) {
       const particle = document.createElement("i");
@@ -104,8 +79,9 @@
 
   function makeWaterDrops(originX, originY, target) {
     const fragment = document.createDocumentFragment();
+    const amount = LIGHTWEIGHT_MODE ? 6 : 11;
 
-    for (let index = 0; index < 11; index += 1) {
+    for (let index = 0; index < amount; index += 1) {
       const drop = document.createElement("i");
       const startX = originX + random(-25, 25);
       const startY = originY + random(-15, 15);
@@ -137,7 +113,8 @@
     document.body.appendChild(ripple);
     window.setTimeout(() => ripple.remove(), 850);
 
-    for (let index = 0; index < 9; index += 1) {
+    const amount = LIGHTWEIGHT_MODE ? 4 : 9;
+    for (let index = 0; index < amount; index += 1) {
       const drop = document.createElement("i");
       drop.className = "impact-drop";
       drop.style.setProperty("--x", `${target.x + random(-9, 9)}px`);
@@ -241,8 +218,9 @@
 
   function makeCelebration(x, y, amount = 12) {
     const symbols = ["♥", "✦", "•", "❋"];
+    const particleAmount = LIGHTWEIGHT_MODE ? Math.max(5, Math.ceil(amount * .5)) : amount;
 
-    for (let index = 0; index < amount; index += 1) {
+    for (let index = 0; index < particleAmount; index += 1) {
       const bit = document.createElement("i");
       bit.className = "celebration-bit";
       bit.textContent = symbols[Math.floor(Math.random() * symbols.length)];
@@ -267,7 +245,8 @@
         const rect = head.getBoundingClientRect();
         const centerX = rect.left + rect.width / 2;
         const centerY = rect.top + rect.height / 2;
-        for (let index = 0; index < 9; index += 1) {
+        const sparkAmount = LIGHTWEIGHT_MODE ? 4 : 9;
+        for (let index = 0; index < sparkAmount; index += 1) {
           makeSpark(centerX, centerY, flowerIndex * 120 + index * 55);
         }
       });
@@ -300,7 +279,6 @@
     }
 
     makeWaterDrops(x, y, target);
-    playWateringSound();
 
     window.setTimeout(() => {
       makeImpact(target);
@@ -356,8 +334,6 @@
       hideSecret();
     }
   });
-
-  window.addEventListener("pagehide", () => wateringSound.pause());
 
   createAmbientParticles();
 })();

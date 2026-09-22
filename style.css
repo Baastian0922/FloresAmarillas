@@ -56,6 +56,7 @@ button {
     radial-gradient(circle at 88% 24%, rgba(148, 76, 181, .27), transparent 30%),
     linear-gradient(145deg, #061323 0%, #111a38 48%, #29183e 100%);
   transition: background 1.8s ease, filter 1.2s ease;
+  touch-action: manipulation;
 }
 
 .experience::before,
@@ -1344,6 +1345,43 @@ button {
 }
 
 @media (max-width: 600px) {
+  .experience {
+    cursor: pointer;
+    transition-duration: .8s;
+  }
+
+  .experience::before,
+  .experience::after {
+    display: none;
+  }
+
+  .ambient::before {
+    inset: 0;
+    opacity: .3;
+    animation: none;
+  }
+
+  .ambient-particle,
+  .water-drop,
+  .impact-drop,
+  .spark,
+  .celebration-bit {
+    box-shadow: none;
+  }
+
+  .petal:nth-child(4n + 1),
+  .petal:nth-child(3n + 2),
+  .plant.watered .soil,
+  .stage-final .plant-stage,
+  .floating-word {
+    filter: none;
+  }
+
+  .secret-backdrop {
+    background: rgba(25, 18, 35, .58);
+    backdrop-filter: none;
+  }
+
   .floating-word {
     animation-name: word-float-mobile;
   }
